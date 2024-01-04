@@ -18,13 +18,9 @@ class MarkovMachine {
 
   makeChains() {
     let chains = new Map();
-    console.log(chains);
-    //for (let word of words) {
     for (let i = 0; i < this.words.length; i += 1) {
       let word = this.words[i];
-      console.log(word);
       let nextWord = this.words[i + 1] || null;
-      console.log(nextWord);
       if (chains.has(word)) {
         chains.get(word).push(nextWord);
       }
@@ -34,7 +30,7 @@ class MarkovMachine {
   }
 
   static choice(ar) {
-    console.log(ar[Math.floor(Math.random() * ar.length)])
+    return(ar[Math.floor(Math.random() * ar.length)])
   }
 
   /** return random text from chains */
