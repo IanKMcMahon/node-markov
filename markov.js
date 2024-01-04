@@ -6,7 +6,7 @@ class MarkovMachine {
   /** build markov machine; read in text.*/
 
   constructor(text) {
-    let words = text.split(/[ \r\n]+/);
+   let words = text.split(/[ \r\n]+/);
     this.words = words.filter(c => c !== "");
     this.makeChains();
   }
@@ -17,9 +17,25 @@ class MarkovMachine {
    *  {"the": ["cat", "hat"], "cat": ["in"], "in": ["the"], "hat": [null]} */
 
   makeChains() {
-    // TODO
+    let chains = new Map();
+    console.log(chains);
+    //for (let word of words) {
+    for (let i = 0; i < this.words.length; i += 1) {
+      let word = this.words[i];
+      console.log(word);
+      let nextWord = this.words[i + 1] || null;
+      console.log(nextWord);
+      if (chains.has(word)) {
+        chains.get(word).push(nextWord);
+      }
+      chains.set(word, [nextWord]);
+    }
+    this.chains = chains
   }
 
+  static choice(ar) {
+    console.log(ar[Math.floor(Math.random() * ar.length)])
+  }
 
   /** return random text from chains */
 
@@ -27,3 +43,7 @@ class MarkovMachine {
     // TODO
   }
 }
+
+let mm = new MarkovMachine("fuzzy wuzzy was a bear");
+  console.log(mm)
+
